@@ -27,6 +27,7 @@ int main(){
     message[0] = 'B';
 
     std::cout << message << std::endl;
+    std::cout << std::endl;
 
     return 0;
 }
