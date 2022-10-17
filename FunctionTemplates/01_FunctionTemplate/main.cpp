@@ -13,6 +13,16 @@ int main(int argc, char **argv){
 
     cout << "max(int): " << maximum(a, b) << endl; 
 
+    double c{4.3};
+    double d{6.75};
+
+    cout << "max(double): " << maximum(c, d) << endl;
+
+    string e {"Hello"};
+    string f{"HelloWorld"};
+
+    cout << "max(string): " << maximum(e,f) << endl;
+
     
     return 0;
 }
