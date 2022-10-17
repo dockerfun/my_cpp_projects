@@ -25,6 +25,17 @@ public:
         return this;
     }
 
+    Dog& set_dog_breed2(const std::string& breed){
+        this->breed = breed;
+        return *this;
+    }
+    Dog& set_dog_age2(int age){
+        if(this->p_age){
+            *(this->p_age)=age;
+        }
+        return *this;
+    }
+    
     Dog * print_info(){
         cout << "name: " << this->name << ", breed: " << this->breed << ", age:" << *(this->p_age) << endl;
         return this;
