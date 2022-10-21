@@ -6,13 +6,18 @@
 
 extern const double distance; //Declaring const double variable, defined in some_other_file
 
-//Definition
+//Definition; undefined reference error
+//Turn external linkage to internal linkage by using namespace
 namespace {
      void some_function(){
           std::cout << "some_function_called ... " << std::endl;
      }
 }
 
+//External linkage -> internal linkage by using static
+// void some_function(){
+//      std::cout << "some_function_called ... " << std::endl;
+// }
 // static void some_function(){
 //      std::cout << "some_function_called ... " << std::endl;
 // }

@@ -4,10 +4,11 @@
 
 #include <iostream>
 
+//internal linkage by default if const -> linkage
 extern const double distance {45.9}; //declaration & definition
 
-void some_funtion();
-void print_distance();
+void some_function(); //declaration  
+void print_distance(); //declaration
 
 int main(){
     
@@ -19,7 +20,7 @@ int main(){
     print_distance();
 
     std::cout << std::endl;
-    some_funtion();
+    some_function();
 
     return 0;
 }
