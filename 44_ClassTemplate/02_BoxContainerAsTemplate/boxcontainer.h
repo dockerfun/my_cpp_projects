@@ -2,29 +2,23 @@
 #define BOXCONTAINER_H
 
 #include <iostream>
-#include "streaminsertable.h"
 #define __T template <typename T>
 
 /**
  * CLASS WRAPPING ON TOP OF RAW ARRAY
 */
-__T class BoxContainer{ //: public StreamInsertable{
-    //friend std::ostream& operator<<(const std::ostream& out, const BoxContainer& source);
-    //typedef int value_type; // allows us to change what's stored in the vector on the fly
-                            // can make it store int, double, etc
-    //using value_type = int;
-    static const size_t DEFAULT_CAPACITY = 11;
+__T class BoxContainer{
+    static const size_t DEFAULT_CAPACITY = 5;
+    static const size_t EXPAND_STEPS = 5;
 public:
     BoxContainer(size_t capacity = DEFAULT_CAPACITY);
     BoxContainer(const BoxContainer& container);
     ~BoxContainer();   
 
-    // StreamInsertable Interface
-    //virtual void stream_insert(std::ostream& out)const override;
-
     // Helper getter methods
     size_t size()const{return m_size;}
     size_t capacity()const{return m_capacity;}
+
     void expand(size_t new_capacity);// expanding
     void add(const T& item);// add
     bool remove_item(const T& item);// remove
@@ -180,12 +174,14 @@ __T void BoxContainer<T>::operator=(const BoxContainer& source){
     m_size=source.m_size;
 }
 
-__T void BoxContainer<T>::stream_insert(std::ostream& out)const{
-    out << "BoxContainer [size: " << m_size << ", capacity: " << m_capacity << ", items: ";
-    for(size_t i{0};i<m_size;++i){
-        out << m_items[i] << " ";
+__T inline std::ostream& operator<<(std::ostream& out, const BoxContainer<T>& operand){
+    out << "BoxContainer : [ size : " << operand.size() << ", items : ";
+
+    for(size_t i{}; i<operand.size(); ++i){
+        out << operand.get_item(i) << " ";
     }
-    std::cout << "]";
-}
+    out << "]";
+    return out;
+ }
 
 #endif
