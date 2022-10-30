@@ -22,16 +22,15 @@ T Adder<T>::add(T a, T b){
     return a + b;
 }
 
-char* Adder<char*>::add(char* a, char* b){
-    return strcat(a,b);
-}
-
 //Template specialization
 template <>
 class Adder <char*>{
 public:
     Adder(){
 
+    }
+    void do_something(){
+        std::cout << "Doing something (char*)..." << std::endl;
     }
     char * add(char* a, char* b);
 };
