@@ -29,9 +29,6 @@ public:
     Adder(){
 
     }
-    void do_something(){
-        std::cout << "Doing something (char*)..." << std::endl;
-    }
     char * add(char* a, char* b);
 };
 
