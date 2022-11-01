@@ -6,16 +6,11 @@
 
 int main(){
     
-    /* code -> templateclass.h */
-    TemplateClass<int> obj1;
-    obj1.set_up(10);
-
-    TemplateClass<double> obj2;
-    obj2.set_up(2.11);
-
-    some_func(obj1);
-    some_func(obj2);
+    /* code */
+    BoxContainer<int> obj1;
+    obj1.add(10);
   
+    std::cout << obj1 << std::endl;
     std::cout << "End" << std::endl;
   
     return 0;

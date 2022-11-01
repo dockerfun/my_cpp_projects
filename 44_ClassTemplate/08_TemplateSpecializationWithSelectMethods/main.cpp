@@ -6,16 +6,26 @@
 int main(){
     
     /* code */
-    Adder<int> adder_int;
-    adder_int.do_something();
-    std::cout << adder_int.add(10,20) << std::endl;
+    BoxContainer<int> box1;
+    box1.add(2);
+    box1.add(4);
+    box1.add(1);
+    box1.add(6);
+    box1.add(75);
+    box1.add(23);
+    box1.add(12);
+    box1.add(42);
+    box1.add(54);
+    box1.add(78);
+    box1.add(91);
+    
+    std::cout << "max index: " << box1.get_max_index() << std::endl;
 
-    char str1[20] {"Hello"};
-    char str2[] {"World"};
-    Adder<char*> adder_c_str;
-
-    adder_c_str.do_something();
-    std::cout << adder_c_str.add(str1, str2) << std::endl;
+    BoxContainer<const char*> box2_ptr;
+    box2_ptr.add("Zoo");
+    box2_ptr.add("World");
+    
+    std::cout << "max index: " << box2_ptr.get_max_index() << std::endl; // Zoo
 
     std::cout << "End" << std::endl;
   

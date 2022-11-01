@@ -10,6 +10,9 @@
  * CLASS WRAPPING ON TOP OF RAW ARRAY
 */
 __T class BoxContainer{
+    friend std::ostream& operator<< <>(std::ostream&, const BoxContainer<T>&);
+    friend std::ostream& operator<< <T>(std::ostream&, const BoxContainer<T>&);
+    
     static const size_t DEFAULT_CAPACITY = 5;
     static const size_t EXPAND_STEPS = 5;
 public:
@@ -17,10 +20,6 @@ public:
     //BoxContainer(const BoxContainer<T, maximum>& container);
     BoxContainer(const BoxContainer<T>& container);
     ~BoxContainer();   
-
-    // Helper getter methods
-    size_t size()const{return m_size;}
-    size_t capacity()const{return m_capacity;}
 
     void expand(size_t new_capacity);// expanding
     void add(const T& item);// add
@@ -34,41 +33,25 @@ public:
     // void operator=(const BoxContainer<T, maximum>& source);
     void operator=(const BoxContainer<T>& source);
 
-    // Get max function example
-    T get_max_index()const{
-        size_t max_index{0};
-        for(size_t i{0};i<m_size;++i){
-            if(m_items[i]>m_items[max_index]){
-                max_index = i;
-            }
-        }
-        return max_index;
-    }
-
-    T get_item(size_t index)const{
-        return m_items[index];
-    }
 private:
     T * m_items;
     size_t m_size{};
     size_t m_capacity{};
 };
 
-// Specialiting get_max_index
-template<> inline
-const char* BoxContainer<const char*>::get_max_index()const{
-    size_t max_index{0};
-    for(size_t i{0};i<m_size;++i){
-        if(std::strcmp(m_items[i], m_items[max_index])>0){
-            max_index=i;
-        }
-    }
-    return m_items[max_index];
-}
+//definition
+template<typename T>
+std::ostream& operator<<(std::ostream& out, const BoxContainer<T>& container){
+    out << "BoxContainer : [ size : " << container.m_size
+        << ", capacity : " << container.m_capacity
+        << ", items : ";
 
-// Only declaration, Definition in the cpp file
-// template<>
-// const char* BoxContainer<const char*>::get_max_index()const;
+    for(size_t i{0};i<container.m_size;++i){
+        out << container.m_items[i] << " ";
+    }
+    out << "]";
+    return out;
+}
 
 __T BoxContainer<T>::BoxContainer(size_t capacity){
     m_items = new T[capacity];
@@ -207,14 +190,14 @@ __T void BoxContainer<T>::operator=(const BoxContainer& source){
     m_size=source.m_size;
 }
 
-__T inline std::ostream& operator<<(std::ostream& out, const BoxContainer<T>& operand){
-    out << "BoxContainer : [ size : " << operand.size() << ", items : ";
+// __T inline std::ostream& operator<<(std::ostream& out, const BoxContainer<T>& operand){
+//     out << "BoxContainer : [ size : " << operand.size() << ", items : ";
 
-    for(size_t i{}; i<operand.size(); ++i){
-        out << operand.get_item(i) << " ";
-    }
-    out << "]";
-    return out;
- }
+//     for(size_t i{}; i<operand.size(); ++i){
+//         out << operand.get_item(i) << " ";
+//     }
+//     out << "]";
+//     return out;
+//  }
 
 #endif
