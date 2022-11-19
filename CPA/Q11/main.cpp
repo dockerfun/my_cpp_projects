@@ -10,7 +10,9 @@ class A {
 }; 
 
 int A::b(void) { 
-    int x=a.a;a.a=a.b;a.b=x; 
+    int x=a.a;
+    a.a=a.b;
+    a.b=x; 
     return x; 
 }; 
     
@@ -18,6 +20,6 @@ int main(void) {
     A a; 
     a.a.a = 0; 
     a.b(); 
-    cout << a.b() << a.a.b << endl; 
-    return 0;
+    cout << a.b() << a.a.b << endl; //11
+    return 0; 
 }
