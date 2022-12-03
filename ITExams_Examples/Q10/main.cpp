@@ -17,7 +17,7 @@ int main(){
     }
 
     for(multimap<int, string>::iterator i=m.begin();i!= m.end(); i++) { 
-        cout << *i << " ";
+        cout << *i << " "; // compilation error
     }
     return 0;
 }
