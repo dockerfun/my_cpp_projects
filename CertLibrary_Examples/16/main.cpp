@@ -1,22 +1,16 @@
 #include <iostream>
+#include <string>
 using namespace std;
 
-class A {
-public:
-    A() { a.a = a.b = 1; }
-    struct { int a,b; } a;
-    int b(void);
-};
-
-int A::b(void) { 
-    int x=a.a; a.a=a.b; a.b=x; 
-    return x; 
-};
-
 int main(void) {
-    A a;
-    a.a.a = 0;
-    a.b();
-    cout << a.b() << a.a.b << endl;
+    string s = "Abc", t = "A";
+    s = s + t;
+    t = t + s;
+
+    int i = s.compare(t) > 0;
+    int j = s.length() < t.length();
+
+    cout << i + j << endl;
+
     return 0;
 }
